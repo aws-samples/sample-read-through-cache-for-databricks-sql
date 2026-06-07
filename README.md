@@ -10,9 +10,11 @@ Infrastructure is defined with the AWS Cloud Development Kit (AWS CDK) v2 in
 Python. The Lambda function is implemented in Python and uses only the runtime
 built-ins (`boto3` and the standard library), so nothing needs to be bundled.
 
-The material is intended for educational purposes and should not be deployed in production environments without additional security testing. This is sample code for non-production usage. You should work with your security and legal teams to meet your organizational security, regulatory, and compliance requirements before deployment.
-
 ---
+
+## This code is for non-production usage
+The material is intended for educational purposes and should not be deployed in production environments without additional security testing. This is sample code for non-production usage. You should work with your security and legal teams to meet your organizational security, regulatory, and compliance requirements before deployment.
+```
 
 ## Architecture
 
