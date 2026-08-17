@@ -9,6 +9,9 @@
 # requirements before deployment.
 """Store the Databricks token in the Secrets Manager secret created by the stack.
 
+NOTE: For production workloads, follow the Databricks recommended access best practices as documented in 
+"Authorize access to Databricks resources" (https://docs.databricks.com/aws/en/dev-tools/auth/).
+
 Usage:
     python scripts/set_databricks_token.py --secret-arn <ARN> --token <TOKEN>
     python scripts/set_databricks_token.py --secret-arn <ARN>   # prompts securely

@@ -65,6 +65,8 @@ not for correctness).
     └── test_handler.py                 # unit tests (in-memory fakes, offline)
 ```
 
+NOTE: For production workloads, follow the Databricks recommended access best practices as documented in "Authorize access to Databricks resources" (https://docs.databricks.com/aws/en/dev-tools/auth/).
+
 ---
 
 ## Prerequisites
@@ -83,7 +85,7 @@ You also need:
 - An AWS account and credentials configured locally (`aws configure` or AWS SSO).
 - A Databricks workspace with a Serverless SQL Warehouse and its **warehouse ID**.
 - A Databricks **personal access token** or **service principal OAuth token** with
-  `CAN_USE` on the warehouse and `SELECT` on the queried tables.
+  `CAN_USE` on the warehouse and `SELECT` on the queried tables. NOTE: For production workloads, follow the Databricks recommended access best practices as documented in "Authorize access to Databricks resources" (https://docs.databricks.com/aws/en/dev-tools/auth/).
 
 Verify the toolchain:
 
@@ -170,6 +172,7 @@ cdk deploy
 
 The stack creates an empty Secrets Manager secret. Populate it with your token.
 The deploy output prints `DatabricksSecretArn`.
+NOTE: For production workloads, follow the Databricks recommended access best practices as documented in "Authorize access to Databricks resources" (https://docs.databricks.com/aws/en/dev-tools/auth/).
 
 ### Helper script options
 
@@ -324,7 +327,7 @@ longer need the cached data.
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
 
 - The Databricks token is stored in AWS Secrets Manager and read at runtime.
-  It is never placed in code, environment variables, or `cdk.json`.
+  It is never placed in code, environment variables, or `cdk.json`. NOTE: For production workloads, follow the Databricks recommended access best practices as documented in "Authorize access to Databricks resources" (https://docs.databricks.com/aws/en/dev-tools/auth/).
 - The Lambda execution role is granted only what it needs: read/write on the
   specific DynamoDB table, read on the single secret, and log writes scoped to
   its own CloudWatch log group (no broad AWS-managed policy).
@@ -344,7 +347,7 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
   trigger refreshes, which is both a data-exposure and a cost (denial-of-wallet)
   risk.
 - Do NOT commit `cdk.context.json`, `cdk.local.json`, or any file containing a
-  real token. They are excluded by `.gitignore`.
+  real token. They are excluded by `.gitignore`. NOTE: For production workloads, follow the Databricks recommended access best practices as documented in "Authorize access to Databricks resources" (https://docs.databricks.com/aws/en/dev-tools/auth/).
 
 ---
 

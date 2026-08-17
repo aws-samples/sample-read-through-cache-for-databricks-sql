@@ -90,6 +90,9 @@ _token_cache: Tuple[Optional[str], float] = (None, 0.0)
 
 # --------------------------------------------------------------------------- #
 # Credential handling
+# NOTE: For production workloads, follow the Databricks recommended access best 
+# practices as documented in "Authorize access to Databricks resources" 
+# (https://docs.databricks.com/aws/en/dev-tools/auth/).
 # --------------------------------------------------------------------------- #
 
 def _get_databricks_token(force: bool = False) -> str:
