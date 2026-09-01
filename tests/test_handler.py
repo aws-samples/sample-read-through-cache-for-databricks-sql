@@ -84,8 +84,10 @@ def handler(monkeypatch):
     # created at import but never called, since these fakes replace them before
     # any test exercises a code path that touches AWS.
     monkeypatch.setattr(handler, "_table", FakeTable())
+    # The placeholder token below is only ever read back by FakeSecrets; nosec
+    # suppresses Bandit B105, which matches on the "token" key name.
     monkeypatch.setattr(
-        handler, "_secrets", FakeSecrets(json.dumps({"token": "fake-token"}))
+        handler, "_secrets", FakeSecrets(json.dumps({"token": "fake-token"}))  # nosec B105
     )
     # Reset the module-level token cache for isolation.
     monkeypatch.setattr(handler, "_token_cache", (None, 0.0))
