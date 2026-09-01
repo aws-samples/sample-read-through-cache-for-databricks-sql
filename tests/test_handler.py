@@ -26,8 +26,12 @@ LAMBDA_DIR = os.path.join(os.path.dirname(__file__), "..", "lambda")
 sys.path.insert(0, os.path.abspath(LAMBDA_DIR))
 
 TABLE_NAME = "test-cache-table"
+# Dummy Secrets Manager ARN built on the reserved documentation account ID. It is
+# a resource identifier, never a credential, and nothing resolves it: the tests
+# replace the Secrets Manager client with FakeSecrets. Bandit's B105 heuristic
+# only matches the variable name, so the false positive is suppressed here.
 SECRET_ARN = (
-    "arn:aws:secretsmanager:us-east-1:123456789012:secret:test-databricks-token"
+    "arn:aws:secretsmanager:us-east-1:123456789012:secret:test-databricks-token"  # nosec B105
 )
 REGION = "us-east-1"
 
