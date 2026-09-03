@@ -1,0 +1,7 @@
+# Development and test dependencies.
+-r requirements.txt
+pytest>=8.0.0
+boto3>=1.34.0
+# Tests use lightweight in-memory fakes (see tests/test_handler.py) instead of
+# moto, which keeps the dependency tree free of moto's transitive packages
+# (requests -> certifi, etc.).

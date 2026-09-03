@@ -1,0 +1,26 @@
+{
+  "app": "python app.py",
+  "watch": {
+    "include": ["**"],
+    "exclude": [
+      "README.md",
+      "cdk*.json",
+      "requirements*.txt",
+      "source.bat",
+      "**/__pycache__",
+      "tests"
+    ]
+  },
+  "context": {
+    "envName": "dev",
+    "freshnessWindowSeconds": 3600,
+    "refreshRateMinutes": 30,
+    "queryManifest": {
+      "country-codes": "SELECT country, country_code, continent FROM samples.wanderbricks.countries ORDER BY country",
+      "host-list": "SELECT name, email, phone, rating FROM samples.wanderbricks.hosts WHERE is_active = true AND is_verified = true AND rating > 4.6 ORDER BY rating DESC"
+    },
+    "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
+    "@aws-cdk/core:checkSecretUsage": true,
+    "@aws-cdk/core:target-partitions": ["aws", "aws-cn"]
+  }
+}
